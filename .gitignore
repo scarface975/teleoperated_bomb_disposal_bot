@@ -1,0 +1,33 @@
+# Arduino/IDE
+*.o
+*.a
+*.so
+*.elf
+*.hex
+*.bin
+.pio/
+.vscode/
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Node.js
+node_modules/
+package-lock.json
+
+# OS
+Thumbs.db
+*.swp
+*.swo
+
+# Secrets
+*.key
+*.pem
+.env
+.env.local
