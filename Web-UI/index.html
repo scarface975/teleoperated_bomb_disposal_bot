@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Teleoperated Bomb Disposal Bot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="titles">
+        <h1>Teleoperated Bomb Disposal Bot</h1>
+        <p class="subtitle">Drive • Manipulate • Observe</p>
+      </div>
+    </div>
+    <div class="connection">
+      <label for="baseUrl">Device IP</label>
+      <div class="input-row">
+        <input id="baseUrl" type="text" placeholder="http://192.168.x.x" spellcheck="false">
+        <button id="saveBase" class="btn primary">Connect</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+  <section class="panel stream-card">
+      <div class="panel-header">
+        <h2>Live Video</h2>
+        <div class="actions">
+          <input id="streamUrl" type="text" class="mono" placeholder="http://192.168.x.x:81/stream" spellcheck="false">
+          <button id="toggleStream" class="btn">Start</button>
+        </div>
+      </div>
+      <div class="stream-frame">
+        <img id="streamImg" alt="Live stream" />
+        <div id="streamEmbedWrapper" style="display:none">
+          <iframe id="streamIframe" title="Embedded stream page" sandbox="allow-scripts allow-same-origin" referrerpolicy="no-referrer" loading="lazy"></iframe>
+        </div>
+        <div id="streamError" class="stream-error" style="display:none"></div>
+        <div id="streamPlaceholder" class="placeholder">
+          <div class="placeholder-inner">
+            <div class="icon">📹</div>
+            <div class="text">Enter ESP32-CAM stream URL and press Start</div>
+            <div class="hint">Typical: http://DEVICE_IP:81/stream (MJPEG)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <section class="panel drive-card">
+      <div class="panel-header">
+        <h2>Drive</h2>
+        <div class="drive-readouts">
+          <span>Throttle: <strong><span id="throttleVal">0</span>%</strong></span>
+        </div>
+      </div>
+      <div class="drive-controls">
+        <div class="slider-row">
+          <span class="label">Reverse</span>
+          <input id="throttle" type="range" min="-100" max="100" value="0" step="1" orient="horizontal">
+          <span class="label">Forward</span>
+        </div>
+        <div class="button-row">
+          <button id="turnLeft" class="btn">⟲ Left</button>
+          <button id="stop" class="btn danger">■ Stop</button>
+          <button id="turnRight" class="btn">Right ⟳</button>
+        </div>
+        <div class="hint">Tip: Hold Left/Right to pivot; release to stop turning. Slider is bidirectional (center = stop).</div>
+      </div>
+    </section>
+
+  <section class="panel arm-card">
+      <div class="panel-header">
+        <h2>Arm Control</h2>
+        <div class="actions">
+          <button id="homePose" class="btn">Home (90°)</button>
+        </div>
+      </div>
+      <div class="arm-controls">
+        <div class="arm-row">
+          <label for="shoulder">Shoulder</label>
+          <input id="shoulder" type="range" min="0" max="180" value="90">
+          <span class="val" id="shoulderVal">90°</span>
+        </div>
+        <div class="arm-row">
+          <label for="elbow">Elbow</label>
+          <input id="elbow" type="range" min="0" max="180" value="90">
+          <span class="val" id="elbowVal">90°</span>
+        </div>
+        <div class="arm-row">
+          <label for="grip">Gripper</label>
+          <input id="grip" type="range" min="0" max="180" value="90">
+          <span class="val" id="gripVal">90°</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="credits">UI by Achu, Aditya & Adithya</div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
